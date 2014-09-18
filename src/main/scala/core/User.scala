@@ -1,3 +1,3 @@
 package core
 
-case class User(id: Int, login: String, name: String, email: String, avatar_url: String, `type`: String)
+case class User(login: String, id: Int, avatar_url: String, html_url: String, `type`: String)
