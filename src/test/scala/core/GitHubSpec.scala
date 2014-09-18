@@ -7,6 +7,6 @@ import core.GitHub._
 class GitHubSpec extends FlatSpec with ShouldMatchers {
 
   "GitHub" should "base" in {
-    base_url should be === "https://api.github.com"
+    base_url should be === "https://api.github.com/"
   }
 }

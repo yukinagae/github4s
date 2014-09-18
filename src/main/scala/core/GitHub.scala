@@ -37,83 +37,48 @@ package core
  */
 object GitHub {
 
-  val base_url = "https://api.github.com"
+  val base_url = "https://api.github.com/"
 
-  def current_user_url(): String = {
-    s"${base_url}/user"
-  }
-
-  def authorizations_url(): String = {
-    s"${base_url}/authorizations"
-  }
-  // TODO code_search_url
-  def emails_url(): String = {
-    s"${base_url}/user/emails"
-  }
-
-  def emojis_url(): String = {
-    s"${base_url}/emojis"
-  }
-
-  def events_url(): String = {
-    s"${base_url}/events"
-  }
-
-  def feeds_url(): String = {
-    s"${base_url}/feeds"
-  }
-
-  // TODO following_url
-  // TODO gists_url
-
-  def hub_url(): String = {
-    s"${base_url}/hub"
-  }
-
-  // TODO issue_search_url
-
-  def issues_url(): String = {
-    s"${base_url}/issues"
-  }
-
-  def keys_url(): String = {
-    s"${base_url}/user/keys"
-  }
-
-  def notifications_url(): String = {
-    s"${base_url}/notifications"
-  }
-
-  // TODO organization_repositories_url
-  // TODO organization_url
-
-  def public_gists_url(): String = {
-    s"${base_url}/gists/public"
-  }
-
-  def rate_limit_url(): String = {
-    s"${base_url}/rate_limit"
-  }
-  // TODO repository_url
-  // TODO repository_search_url
-  // TODO current_user_repositories_url
-  // TODO starred_url
-
-  def starred_gists_url(): String = {
-    s"${base_url}/gists/starred"
-  }
-
-  def team_url(): String = {
-    s"${base_url}/teams"
-  }
-
-  // TODO user_url
-
-  def user_organizations_url(): String = {
-    s"${base_url}/user/orgs"
-  }
-
-  // TODO user_repositories_url
-  // TODO user_search_url
+  def current_user_url() = "user"
+  def authorizations_url() = "authorizations"
+  // TODO "code_search_url": "https://api.github.com/search/code?q={query}{&page,per_page,sort,order}"
+  def code_search_url(query: String) = s"search/code?q=${query}"
+  def emails_url() = "user/emails"
+  def emojis_url() = "emojis"
+  def events_url() = "events"
+  def feeds_url() = "feeds"
+  // TODO "following_url": "https://api.github.com/user/following{/target}"
+  def following_url(target: String) = s"user/following/${target}"
+  // TODO "gists_url": "https://api.github.com/gists{/gist_id}"
+  def gists_url(gist_id: String) = s"gists/${gist_id}"
+  def hub_url() = "hub"
+  // TODO "issue_search_url": "https://api.github.com/search/issues?q={query}{&page,per_page,sort,order}"
+  def issue_search_url(query: String) = s"search/issues?q=${query}"
+  def issues_url() = "issues"
+  def keys_url() = "user/keys"
+  def notifications_url() = "notifications"
+  // TODO "organization_repositories_url": "https://api.github.com/orgs/{org}/repos{?type,page,per_page,sort}"
+  def organization_repositories_url(org: String) = s"orgs/${org}/repos"
+  // TODO "organization_url": "https://api.github.com/orgs/{org}"
+  def organization_url(org: String) = s"orgs/${org}"
+  def public_gists_url() = "gists/public"
+  def rate_limit_url() = "rate_limit"
+  // TODO "repository_url": "https://api.github.com/repos/{owner}/{repo}"
+  def repository_url(owner: String, repo: String) = s"repos/${owner}/${repo}"
+  // TODO "repository_search_url": "https://api.github.com/search/repositories?q={query}{&page,per_page,sort,order}"
+  def repository_search_url(query: String) = s"search/repositories?q=${query}"
+  // TODO "current_user_repositories_url": "https://api.github.com/user/repos{?type,page,per_page,sort}"
+  def current_user_repositories_url() = "user/repos"
+  // TODO "starred_url": "https://api.github.com/user/starred{/owner}{/repo}"
+  def starred_url(owner: String, repo: String) = s"user/starred/${owner}/${repo}"
+  def starred_gists_url() = "gists/starred"
+  def team_url() = "teams"
+  // TODO "user_url": "https://api.github.com/users/{user}"
+  def user_url(user: String) = s"users/${user}"
+  def user_organizations_url() = "user/orgs"
+  // TODO "user_repositories_url": "https://api.github.com/users/{user}/repos{?type,page,per_page,sort}"
+  def user_repositories_url(user: String) = s"users/${user}/repos"
+  // TODO "user_search_url": "https://api.github.com/search/users?q={query}{&page,per_page,sort,order}
+  def user_search_url(query: String) = s"search/users?q=${query}"
 
 }
