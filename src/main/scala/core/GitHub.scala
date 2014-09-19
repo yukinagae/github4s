@@ -20,6 +20,11 @@ object GitHub {
   def current_user_repositories_url() = s"${base_url}/user/repos" // TODO https://api.github.com/user/repos{?type,page,per_page,sort}
   def starred_url(owner: String, repo: String) = s"${base_url}/user/starred/${owner}/${repo}" // https://api.github.com/user/starred{/owner}{/repo}
   def starred_gists_url() = s"${base_url}/gists/starred" // https://api.github.com/gists/starred
+  def issues_url() = s"${base_url}/issues" // https://api.github.com/issues
+  def organization_repositories_url(org: String) = s"${base_url}/orgs/${org}/repos" // TODO https://api.github.com/orgs/{org}/repos{?type,page,per_page,sort}
+  def organization_url(org: String) = s"${base_url}/orgs/${org}" // https://api.github.com/orgs/{org}
+  def team_url() = s"${base_url}/teams" // https://api.github.com/teams
+  def user_organizations_url() = s"${base_url}/user/orgs" // https://api.github.com/user/orgs
 
   /**
    * Not Requires authentication
@@ -46,10 +51,5 @@ object GitHub {
    */
   def feeds_url() = s"${base_url}/feeds" // https://api.github.com/feeds
   def hub_url() = s"${base_url}/hub" // https://api.github.com/hub
-  def issues_url() = s"${base_url}/issues" // https://api.github.com/issues
-  def organization_repositories_url(org: String) = s"${base_url}/orgs/${org}/repos" // TODO https://api.github.com/orgs/{org}/repos{?type,page,per_page,sort}
-  def organization_url(org: String) = s"${base_url}/orgs/${org}" // https://api.github.com/orgs/{org}
-  def team_url() = s"${base_url}/teams" // https://api.github.com/teams
-  def user_organizations_url() = s"${base_url}/user/orgs" // https://api.github.com/user/orgs
 
 }

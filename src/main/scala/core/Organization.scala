@@ -1,3 +1,3 @@
 package core
 
-case class Organization(id: Int, login: String, url: String, avatar_url: String)
+case class Organization(login: String, id: Int, url: String, avatar_url: String)
