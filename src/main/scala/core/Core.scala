@@ -19,6 +19,8 @@ object Core {
     json.completeOption
   }
 
+  def repository(owner: String, repo: String): Option[Repository] = base(repository_url(owner, repo)).map(_.extract[Repository])
+  def repository_search(query: String): Option[RepositorySummary] = base(repository_search_url(query)).map(_.extract[RepositorySummary])
   def user(user: String): Option[User] = base(user_url(user)).map(_.extract[User])
   def user_repositories(user: String): List[Repository] = base(user_repositories_url(user)).map(_.extract[List[Repository]]).getOrElse(Nil)
   def user_search(query: String): Option[UserSummary] = base(user_search_url(query)).map(_.extract[UserSummary])
@@ -26,7 +28,7 @@ object Core {
   def main(args: Array[String]) {
 
     try {
-      val s = user_repositories("test")
+      val s = repository_search("hoge")
       println(s)
     } finally {
       Http.shutdown()
