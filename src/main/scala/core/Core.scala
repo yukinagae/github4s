@@ -1,6 +1,7 @@
 package core
 
 import core.GitHub._
+import net.liftweb.json.DefaultFormats
 
 object Core {
 
@@ -19,13 +20,17 @@ object Core {
   }
 
   def user(user: String): Option[User] = base(user_url(user)).map(_.extract[User])
+  def user_search(query: String): Option[UserSummary] = base(user_search_url(query)).map(_.extract[UserSummary])
 
   def main(args: Array[String]) {
 
-    val s = user("test")
-    println(s)
+    try {
+      val s = user_search("test")
+      println(s)
+    } finally {
+      Http.shutdown()
+    }
 
-    Http.shutdown()
   }
 
 }
