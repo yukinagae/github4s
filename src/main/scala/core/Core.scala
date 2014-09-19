@@ -24,26 +24,25 @@ object Core {
   /**
    * auth
    */
-  val token = "test" // FIXME get token
-  def auth(url: String): String = s"${url}?access_token=${token}"
+  def auth(url: String)(implicit token: String): String = s"${url}?access_token=${token}"
 
   /**
    * Require Auth APIs
    */
-  def current_user(): Option[User] = base(auth(current_user_url())).map(_.extract[User])
+  def current_user()(implicit token: String): Option[User] = base(auth(current_user_url())).map(_.extract[User])
   // TODO authorizations
-  def emails(): List[Email] = base(auth(emails_url())).map(_.extract[List[Email]]).getOrElse(Nil)
+  def emails()(implicit token: String): List[Email] = base(auth(emails_url())).map(_.extract[List[Email]]).getOrElse(Nil)
   // TODO following
   // TODO keys
   // TODO notifications
-  def current_user_repositories(): List[Repository] = base(auth(current_user_repositories_url())).map(_.extract[List[Repository]]).getOrElse(Nil)
+  def current_user_repositories()(implicit token: String): List[Repository] = base(auth(current_user_repositories_url())).map(_.extract[List[Repository]]).getOrElse(Nil)
   // TODO starred
   // TODO starred_gists
-  def issues(): List[Issue] = base(auth(issues_url())).map(_.extract[List[Issue]]).getOrElse(Nil)
-  def organization_repositories(org: String): List[Repository] = base(auth(organization_repositories_url(org))).map(_.extract[List[Repository]]).getOrElse(Nil)
-  def organization(org: String): Option[Organization] = base(auth(organization_url(org))).map(_.extract[Organization])
-  def team(): Option[Team] = base(auth(team_url())).map(_.extract[Team])
-  def user_organizations(): List[Organization] = base(auth(user_organizations_url())).map(_.extract[List[Organization]]).getOrElse(Nil)
+  def issues()(implicit token: String): List[Issue] = base(auth(issues_url())).map(_.extract[List[Issue]]).getOrElse(Nil)
+  def organization_repositories(org: String)(implicit token: String): List[Repository] = base(auth(organization_repositories_url(org))).map(_.extract[List[Repository]]).getOrElse(Nil)
+  def organization(org: String)(implicit token: String): Option[Organization] = base(auth(organization_url(org))).map(_.extract[Organization])
+  def team()(implicit token: String): Option[Team] = base(auth(team_url())).map(_.extract[Team])
+  def user_organizations()(implicit token: String): List[Organization] = base(auth(user_organizations_url())).map(_.extract[List[Organization]]).getOrElse(Nil)
 
   /**
    * Not Require Auth APIs
@@ -74,7 +73,8 @@ object Core {
   def main(args: Array[String]) {
 
     try {
-      val s = user_organizations()
+      implicit val token = "test_token"
+      val s = current_user()
       println(s)
     } finally {
       Http.shutdown()
