@@ -20,12 +20,13 @@ object Core {
   }
 
   def user(user: String): Option[User] = base(user_url(user)).map(_.extract[User])
+  def user_repositories(user: String): List[Repository] = base(user_repositories_url(user)).map(_.extract[List[Repository]]).getOrElse(Nil)
   def user_search(query: String): Option[UserSummary] = base(user_search_url(query)).map(_.extract[UserSummary])
 
   def main(args: Array[String]) {
 
     try {
-      val s = user_search("test")
+      val s = user_repositories("test")
       println(s)
     } finally {
       Http.shutdown()
